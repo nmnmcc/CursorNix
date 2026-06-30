@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Update sources.json with the latest Cursor AppImage and agent CLI."""
+"""Update sources.json with the latest Cursor deb packages and agent CLI."""
 
 import json
 import re
@@ -55,30 +55,30 @@ def update_cursor(sources: dict) -> bool:
         current.get("version") == version
         and current.get("commitSha") == commit_sha
         and all(
-            current.get("appimage", {}).get(system, {}).get("hash")
+            current.get("deb", {}).get(system, {}).get("hash")
             for system in LINUX_PLATFORMS
         )
     ):
         return False
 
-    appimage = {}
+    deb = {}
     for system, api_platform in LINUX_PLATFORMS.items():
         meta = api_meta(api_platform)
         if meta["version"] != version:
             raise SystemExit(
                 f"Version mismatch on {system}: {meta['version']} != {version}"
             )
-        url = meta["downloadUrl"]
-        if not url.endswith(".AppImage"):
-            raise SystemExit(f"Expected AppImage for {system}, got {url}")
+        url = meta["debUrl"]
+        if not url.endswith(".deb"):
+            raise SystemExit(f"Expected deb package for {system}, got {url}")
         print(f"  prefetch cursor {system} {version}")
-        appimage[system] = {"url": url, "hash": nix_prefetch_sri(url)}
+        deb[system] = {"url": url, "hash": nix_prefetch_sri(url)}
 
     sources["cursor"] = {
         "version": version,
         "commitSha": commit_sha,
         "vscodeVersion": current.get("vscodeVersion"),
-        "appimage": appimage,
+        "deb": deb,
     }
     return True
 
@@ -111,7 +111,7 @@ def update_agent(sources: dict) -> bool:
 def main():
     sources = json.loads(SOURCES_FILE.read_text()) if SOURCES_FILE.exists() else {}
 
-    print("Updating latest Cursor AppImage from API ...")
+    print("Updating latest Cursor deb packages from API ...")
     cursor_changed = update_cursor(sources)
 
     print("Updating Cursor Agent from install script ...")

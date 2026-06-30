@@ -1,21 +1,22 @@
 # CursorNix
 
-Nix flake for Cursor — official Linux AppImage and agent CLI from
+Nix flake for Cursor — official Linux deb packages and agent CLI from
 downloads.cursor.com.
 
 Translations: [简体中文](README.zh-CN.md).
 
 Unlike nixpkgs which may lag behind upstream, this flake fetches the
-latest official AppImage directly. No compilation, instant installs.
+latest official deb packages directly. No compilation, instant installs.
 
 ## What you get
 
-- `cursor`: the Cursor AI code editor (Linux AppImage).
+- `cursor`: the Cursor AI code editor (Linux deb package).
 - `cursor-agent`: the Cursor Agent CLI (`agent` and `cursor-agent` commands).
 - A NixOS module at `cursornix.nixosModules.default`.
 - A package overlay at `cursornix.overlays.default`.
 
-Supported systems: `x86_64-linux`, `aarch64-linux`.
+Supported systems: `x86_64-linux`, `aarch64-linux` (all official Cursor
+Linux deb variants currently published by the Cursor API).
 
 You need Nix with flakes enabled and `allowUnfree = true` (Cursor is
 proprietary software).
@@ -102,7 +103,7 @@ Or manually:
 python3 update.py
 ```
 
-The update script fetches the latest Linux AppImage from the Cursor API
+The update script fetches the latest Linux deb packages from the Cursor API
 and pins the agent CLI from cursor.com/install into `sources.json`.
 
 ## Troubleshooting

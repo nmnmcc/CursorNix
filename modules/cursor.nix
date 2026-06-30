@@ -8,7 +8,8 @@
 let
   cfg = config.programs.cursor;
   system = pkgs.stdenv.hostPlatform.system;
-  flakePackages = self.packages.${system} or (throw "CursorNix does not provide packages for ${system}");
+  flakePackages =
+    self.packages.${system} or (throw "CursorNix does not provide packages for ${system}");
 in
 {
   options.programs.cursor = {
@@ -37,14 +38,13 @@ in
     assertions = [
       {
         assertion = !cfg.enable || (flakePackages.cursor or null) != null;
-        message = "Cursor AppImage is not available for ${system}.";
+        message = "Cursor deb package is not available for ${system}.";
       }
     ];
 
     nixpkgs.config.allowUnfree = true;
 
     environment.systemPackages =
-      lib.optional cfg.enable cfg.package
-      ++ lib.optional cfg.agent.enable cfg.agent.package;
+      lib.optional cfg.enable cfg.package ++ lib.optional cfg.agent.enable cfg.agent.package;
   };
 }

@@ -2,7 +2,7 @@
   lib,
   stdenv,
   fetchurl,
-  appimageTools,
+  dpkg,
   buildVscode,
   sources,
 }:
@@ -13,19 +13,12 @@ let
   version = sources.cursor.version;
   vscodeVersion = sources.cursor.vscodeVersion or "1.121.0";
   systemSource =
-    sources.cursor.appimage.${hostPlatform.system}
-      or (throw "Cursor AppImage is not available for ${hostPlatform.system}");
+    sources.cursor.deb.${hostPlatform.system}
+      or (throw "Cursor deb package is not available for ${hostPlatform.system}");
 
   fetched = fetchurl {
     inherit (systemSource) url hash;
   };
-
-  appimageContents = appimageTools.extract {
-    inherit pname version;
-    src = fetched;
-  };
-
-  extractDir = "${pname}-${version}-extracted";
 in
 (buildVscode rec {
   inherit pname version vscodeVersion;
@@ -39,9 +32,13 @@ in
   libraryName = "cursor";
   iconName = "cursor";
 
-  src = appimageContents;
+  src = fetched;
 
-  sourceRoot = "${extractDir}/usr/share/cursor";
+  sourceRoot = "usr/share/cursor";
+
+  extraNativeBuildInputs = [
+    dpkg
+  ];
 
   tests = { };
 
@@ -60,24 +57,28 @@ in
     ];
     sourceProvenance = with lib.sourceTypes; [ binaryNativeCode ];
   };
-}).overrideAttrs (oldAttrs: {
-  passthru =
-    (oldAttrs.passthru or { })
-    // {
+}).overrideAttrs
+  (oldAttrs: {
+    passthru = (oldAttrs.passthru or { }) // {
       cursorVersion = version;
       cursorVscodeVersion = vscodeVersion;
       cursorCommitSha = sources.cursor.commitSha or null;
     };
 
-  autoPatchelfIgnoreMissingDeps =
-    (oldAttrs.autoPatchelfIgnoreMissingDeps or [ ])
-    ++ lib.optionals (!hostPlatform.isMusl) [
-      "libc.musl-*.so.*"
-    ];
+    unpackPhase = ''
+      runHook preUnpack
+      ${dpkg}/bin/dpkg-deb --fsys-tarfile "$src" | tar --no-same-owner --no-same-permissions -xf -
+      cd ${oldAttrs.sourceRoot}
+      runHook postUnpack
+    '';
 
-  preFixup =
-    (oldAttrs.preFixup or "")
-    + ''
+    autoPatchelfIgnoreMissingDeps =
+      (oldAttrs.autoPatchelfIgnoreMissingDeps or [ ])
+      ++ lib.optionals (!hostPlatform.isMusl) [
+        "libc.musl-*.so.*"
+      ];
+
+    preFixup = (oldAttrs.preFixup or "") + ''
       # Match upstream .deb desktop entries for workspace files and cursor:// URLs.
       if ! grep -q '^MimeType=application/x-cursor-workspace;' "$out/share/applications/cursor.desktop"; then
         sed -i '/^Keywords=/a MimeType=application/x-cursor-workspace;' \
@@ -88,11 +89,8 @@ in
         "$out/share/applications/cursor-url-handler.desktop"
     '';
 
-  postInstall =
-    (oldAttrs.postInstall or "")
-    + ''
+    postInstall = (oldAttrs.postInstall or "") + ''
       install -Dm644 ${./mime/cursor-workspace.xml} \
         $out/share/mime/packages/cursor-workspace.xml
-      rm -f $out/lib/cursor/resources/appimageupdatetool.AppImage
     '';
-})
+  })

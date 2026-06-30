@@ -2,19 +2,20 @@
 
 [English](README.md)
 
-将 downloads.cursor.com 上的 Cursor 官方 Linux AppImage 和 agent CLI
+将 downloads.cursor.com 上的 Cursor 官方 Linux deb 包和 agent CLI
 打包为 Nix flake。
 
-与 nixpkgs 可能滞后于上游不同，本 flake 直接获取最新官方 AppImage——无需编译，即装即用。
+与 nixpkgs 可能滞后于上游不同，本 flake 直接获取最新官方 deb 包——无需编译，即装即用。
 
 ## 包含内容
 
-- `cursor`：Cursor AI 代码编辑器（Linux AppImage）。
+- `cursor`：Cursor AI 代码编辑器（Linux deb 包）。
 - `cursor-agent`：Cursor Agent 命令行工具（`agent` 和 `cursor-agent` 命令）。
 - NixOS 模块：`cursornix.nixosModules.default`。
 - 包覆盖层：`cursornix.overlays.default`。
 
-支持的系统：`x86_64-linux`、`aarch64-linux`。
+支持的系统：`x86_64-linux`、`aarch64-linux`（即 Cursor API 当前发布的所有
+官方 Linux deb 变体）。
 
 你需要启用 flakes 的 Nix，并设置 `allowUnfree = true`（Cursor 为专有软件）。
 
@@ -100,7 +101,7 @@ nix flake update cursornix
 python3 update.py
 ```
 
-更新脚本从 Cursor API 获取最新 Linux AppImage，并从 cursor.com/install
+更新脚本从 Cursor API 获取最新 Linux deb 包，并从 cursor.com/install
 固定 agent CLI 版本到 `sources.json`。
 
 ## 故障排除

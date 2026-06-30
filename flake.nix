@@ -1,5 +1,5 @@
 {
-  description = "Cursor — official Linux AppImage and agent CLI from downloads.cursor.com";
+  description = "Cursor — official Linux deb packages and agent CLI from downloads.cursor.com";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
