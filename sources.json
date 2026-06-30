@@ -1,0 +1,30 @@
+{
+  "cursor": {
+    "version": "3.9.16",
+    "commitSha": "042b3c1a4c53f2c3808067f519fbfc67b72cad8b",
+    "vscodeVersion": "1.105.1",
+    "appimage": {
+      "x86_64-linux": {
+        "url": "https://downloads.cursor.com/production/042b3c1a4c53f2c3808067f519fbfc67b72cad8b/linux/x64/Cursor-3.9.16-x86_64.AppImage",
+        "hash": "sha256-dG61VYGMHPip57ldzNICEi1yPc4s1dON+MlDGiKadKc="
+      },
+      "aarch64-linux": {
+        "url": "https://downloads.cursor.com/production/042b3c1a4c53f2c3808067f519fbfc67b72cad8b/linux/arm64/Cursor-3.9.16-aarch64.AppImage",
+        "hash": "sha256-7tkupyy8EFeOpzQqoHQsYxWQlFoW6VBpXkuCJsRIhRw="
+      }
+    }
+  },
+  "agent": {
+    "version": "2026.06.26-7079533",
+    "tarball": {
+      "x86_64-linux": {
+        "url": "https://downloads.cursor.com/lab/2026.06.26-7079533/linux/x64/agent-cli-package.tar.gz",
+        "hash": "sha256-fZNlWkdPQsK12SfmKmG+VrxWA4Df7sAFQJ5DSToq+Eg="
+      },
+      "aarch64-linux": {
+        "url": "https://downloads.cursor.com/lab/2026.06.26-7079533/linux/arm64/agent-cli-package.tar.gz",
+        "hash": "sha256-WcMurHV8Pm/2Y1HvNJGZYqjgt3OzHwn5oW5W27egueE="
+      }
+    }
+  }
+}
