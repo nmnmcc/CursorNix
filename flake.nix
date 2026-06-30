@@ -62,6 +62,8 @@
           cursor-mime = pkgs.runCommand "cursor-mime-check" { } ''
             grep -Fq 'MimeType=application/x-cursor-workspace;' \
               ${pkgs.cursor}/share/applications/cursor.desktop
+            grep '^MimeType=' ${pkgs.cursor}/share/applications/cursor.desktop \
+              | grep -Fq 'x-scheme-handler/cursor'
             grep -Fq 'MimeType=x-scheme-handler/cursor;' \
               ${pkgs.cursor}/share/applications/cursor-url-handler.desktop
             test -f ${pkgs.cursor}/share/mime/packages/cursor-workspace.xml
