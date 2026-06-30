@@ -1,30 +1,30 @@
 {
-  "cursor": {
-    "version": "3.9.16",
-    "commitSha": "042b3c1a4c53f2c3808067f519fbfc67b72cad8b",
-    "vscodeVersion": "1.105.1",
-    "deb": {
-      "x86_64-linux": {
-        "url": "https://downloads.cursor.com/production/042b3c1a4c53f2c3808067f519fbfc67b72cad8b/linux/x64/deb/amd64/deb/cursor_3.9.16_amd64.deb",
-        "hash": "sha256-Rl64rS0n09tJBNvpefxJvAHk8eri7lP0pyyDb7RVNZ8="
-      },
-      "aarch64-linux": {
-        "url": "https://downloads.cursor.com/production/042b3c1a4c53f2c3808067f519fbfc67b72cad8b/linux/arm64/deb/arm64/deb/cursor_3.9.16_arm64.deb",
-        "hash": "sha256-9iOfNPlmqVcqHHHQB7EC3QFDIfrn/kw/83ihY4RoO+M="
-      }
-    }
-  },
   "agent": {
-    "version": "2026.06.26-7079533",
     "tarball": {
-      "x86_64-linux": {
-        "url": "https://downloads.cursor.com/lab/2026.06.26-7079533/linux/x64/agent-cli-package.tar.gz",
-        "hash": "sha256-fZNlWkdPQsK12SfmKmG+VrxWA4Df7sAFQJ5DSToq+Eg="
-      },
       "aarch64-linux": {
-        "url": "https://downloads.cursor.com/lab/2026.06.26-7079533/linux/arm64/agent-cli-package.tar.gz",
-        "hash": "sha256-WcMurHV8Pm/2Y1HvNJGZYqjgt3OzHwn5oW5W27egueE="
+        "hash": "sha256-RiDU7x76KjPp+0PbyH2nrCe5YMuuAdsk33B/vOzDh5I=",
+        "url": "https://downloads.cursor.com/lab/2026.06.29-2ad2186/linux/arm64/agent-cli-package.tar.gz"
+      },
+      "x86_64-linux": {
+        "hash": "sha256-mE4iVRoxXrbVFsLoBjUAJD3Dy3jBOaEPUp3sj/TlvJs=",
+        "url": "https://downloads.cursor.com/lab/2026.06.29-2ad2186/linux/x64/agent-cli-package.tar.gz"
       }
-    }
+    },
+    "version": "2026.06.29-2ad2186"
+  },
+  "cursor": {
+    "commitSha": "042b3c1a4c53f2c3808067f519fbfc67b72cad8b",
+    "deb": {
+      "aarch64-linux": {
+        "hash": "sha256-9iOfNPlmqVcqHHHQB7EC3QFDIfrn/kw/83ihY4RoO+M=",
+        "url": "https://downloads.cursor.com/production/042b3c1a4c53f2c3808067f519fbfc67b72cad8b/linux/arm64/deb/arm64/deb/cursor_3.9.16_arm64.deb"
+      },
+      "x86_64-linux": {
+        "hash": "sha256-Rl64rS0n09tJBNvpefxJvAHk8eri7lP0pyyDb7RVNZ8=",
+        "url": "https://downloads.cursor.com/production/042b3c1a4c53f2c3808067f519fbfc67b72cad8b/linux/x64/deb/amd64/deb/cursor_3.9.16_amd64.deb"
+      }
+    },
+    "version": "3.9.16",
+    "vscodeVersion": "1.105.1"
   }
 }
