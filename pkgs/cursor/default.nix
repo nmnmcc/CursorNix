@@ -68,7 +68,6 @@ in
     unpackPhase = ''
       runHook preUnpack
       ${dpkg}/bin/dpkg-deb --fsys-tarfile "$src" | tar --no-same-owner --no-same-permissions -xf -
-      cd ${oldAttrs.sourceRoot}
       runHook postUnpack
     '';
 
@@ -85,8 +84,13 @@ in
           "$out/share/applications/cursor.desktop"
       fi
 
-      sed -i 's/^MimeType=.*/MimeType=x-scheme-handler\/cursor;/' \
-        "$out/share/applications/cursor-url-handler.desktop"
+      if grep -q '^MimeType=' "$out/share/applications/cursor-url-handler.desktop"; then
+        sed -i 's/^MimeType=.*/MimeType=x-scheme-handler\/cursor;/' \
+          "$out/share/applications/cursor-url-handler.desktop"
+      else
+        sed -i '/^Keywords=/a MimeType=x-scheme-handler/cursor;' \
+          "$out/share/applications/cursor-url-handler.desktop"
+      fi
     '';
 
     postInstall = (oldAttrs.postInstall or "") + ''

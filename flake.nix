@@ -44,6 +44,16 @@
             overlays = [ self.overlays.default ];
             config.allowUnfree = true;
           };
+          cursorNixosConfig = lib.nixosSystem {
+            inherit system;
+            modules = [
+              self.nixosModules.default
+              {
+                programs.cursor.enable = true;
+                system.stateVersion = "26.05";
+              }
+            ];
+          };
         in
         {
           inherit (self.packages.${system}) cursor;
@@ -55,6 +65,12 @@
             grep -Fq 'MimeType=x-scheme-handler/cursor;' \
               ${pkgs.cursor}/share/applications/cursor-url-handler.desktop
             test -f ${pkgs.cursor}/share/mime/packages/cursor-workspace.xml
+            touch $out
+          '';
+
+          cursor-handler = pkgs.runCommand "cursor-handler-check" { } ''
+            grep -Fxq 'x-scheme-handler/cursor=cursor-url-handler.desktop' \
+              ${cursorNixosConfig.config.environment.etc."xdg/mimeapps.list".source}
             touch $out
           '';
         }
