@@ -12,8 +12,6 @@
 - `cursor`：Cursor AI 代码编辑器（Linux deb 包）。
 - `cursor-agent`：Cursor Agent 命令行工具（`agent` 和 `cursor-agent` 命令）。
 - NixOS 模块：`cursornix.nixosModules.default`。
-- 包覆盖层：`cursornix.overlays.default`。
-- 通过 NixOS 模块启用 Cursor 时注册 `cursor://` URL handler。
 
 支持的系统：`x86_64-linux`、`aarch64-linux`（即 Cursor API 当前发布的所有
 官方 Linux deb 变体）。
@@ -72,21 +70,6 @@ nix run github:nmnmcc/CursorNix#cursor-agent -- --version
       ];
     };
   };
-}
-```
-
-## 使用覆盖层
-
-```nix
-{
-  nixpkgs.overlays = [
-    cursornix.overlays.default
-  ];
-
-  environment.systemPackages = with pkgs; [
-    cursor
-    cursor-agent
-  ];
 }
 ```
 

@@ -13,8 +13,6 @@ latest official deb packages directly. No compilation, instant installs.
 - `cursor`: the Cursor AI code editor (Linux deb package).
 - `cursor-agent`: the Cursor Agent CLI (`agent` and `cursor-agent` commands).
 - A NixOS module at `cursornix.nixosModules.default`.
-- A package overlay at `cursornix.overlays.default`.
-- `cursor://` URL handler registration when the NixOS module enables Cursor.
 
 Supported systems: `x86_64-linux`, `aarch64-linux` (all official Cursor
 Linux deb variants currently published by the Cursor API).
@@ -74,21 +72,6 @@ nix run github:nmnmcc/CursorNix#cursor-agent -- --version
       ];
     };
   };
-}
-```
-
-## Using the overlay
-
-```nix
-{
-  nixpkgs.overlays = [
-    cursornix.overlays.default
-  ];
-
-  environment.systemPackages = with pkgs; [
-    cursor
-    cursor-agent
-  ];
 }
 ```
 

@@ -46,10 +46,5 @@ in
 
     environment.systemPackages =
       lib.optional cfg.enable cfg.package ++ lib.optional cfg.agent.enable cfg.agent.package;
-
-    xdg.mime = lib.mkIf cfg.enable {
-      addedAssociations."x-scheme-handler/cursor" = lib.mkDefault "cursor-url-handler.desktop";
-      defaultApplications."x-scheme-handler/cursor" = lib.mkDefault "cursor-url-handler.desktop";
-    };
   };
 }

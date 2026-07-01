@@ -79,25 +79,13 @@ in
 
     preFixup = (oldAttrs.preFixup or "") + ''
       # Match upstream .deb desktop entries for workspace files and cursor:// URLs.
-      ensureDesktopMime() {
-        local desktop="$1"
-        local mime="$2"
-
-        if grep -q '^MimeType=' "$desktop"; then
-          if ! grep '^MimeType=' "$desktop" | grep -Fq "$mime"; then
-            sed -i "/^MimeType=/ s|;*$|;$mime;|" "$desktop"
-          fi
-        elif grep -q '^Keywords=' "$desktop"; then
-          sed -i "/^Keywords=/a MimeType=$mime;" "$desktop"
-        else
-          sed -i "/^\[Desktop Entry\]/a MimeType=$mime;" "$desktop"
-        fi
-      }
-
-      ensureDesktopMime "$out/share/applications/cursor.desktop" \
-        "application/x-cursor-workspace"
-      ensureDesktopMime "$out/share/applications/cursor.desktop" \
-        "x-scheme-handler/cursor"
+      if grep -q '^MimeType=' "$out/share/applications/cursor.desktop"; then
+        sed -i 's|^MimeType=.*|MimeType=application/x-cursor-workspace;|' \
+          "$out/share/applications/cursor.desktop"
+      else
+        sed -i '/^Keywords=/a MimeType=application/x-cursor-workspace;' \
+          "$out/share/applications/cursor.desktop"
+      fi
 
       if grep -q '^MimeType=' "$out/share/applications/cursor-url-handler.desktop"; then
         sed -i 's|^MimeType=.*|MimeType=x-scheme-handler/cursor;|' \
