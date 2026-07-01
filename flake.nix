@@ -50,6 +50,9 @@
               ${cursor}/share/applications/cursor.desktop
             grep -Fq 'MimeType=x-scheme-handler/cursor;' \
               ${cursor}/share/applications/cursor-url-handler.desktop
+            grep -Fq 'Exec=cursor-url-handler --open-url %U' \
+              ${cursor}/share/applications/cursor-url-handler.desktop
+            test -x ${cursor}/bin/cursor-url-handler
             test -f ${cursor}/share/mime/packages/cursor-workspace.xml
             touch $out
           '';

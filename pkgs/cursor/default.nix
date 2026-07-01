@@ -94,6 +94,15 @@ in
         sed -i '/^Keywords=/a MimeType=x-scheme-handler/cursor;' \
           "$out/share/applications/cursor-url-handler.desktop"
       fi
+
+      sed -i 's|^Exec=.*|Exec=cursor-url-handler --open-url %U|' \
+        "$out/share/applications/cursor-url-handler.desktop"
+    '';
+
+    postFixup = (oldAttrs.postFixup or "") + ''
+      cp "$out/bin/cursor" "$out/bin/cursor-url-handler"
+      sed -i "s|$out/bin/\\.cursor-wrapped|$out/lib/cursor/cursor|" \
+        "$out/bin/cursor-url-handler"
     '';
 
     postInstall = (oldAttrs.postInstall or "") + ''
