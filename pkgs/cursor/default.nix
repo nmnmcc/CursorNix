@@ -79,13 +79,25 @@ in
 
     preFixup = (oldAttrs.preFixup or "") + ''
       # Match upstream .deb desktop entries for workspace files and cursor:// URLs.
-      if grep -q '^MimeType=' "$out/share/applications/cursor.desktop"; then
-        sed -i 's|^MimeType=.*|MimeType=application/x-cursor-workspace;|' \
-          "$out/share/applications/cursor.desktop"
-      else
-        sed -i '/^Keywords=/a MimeType=application/x-cursor-workspace;' \
-          "$out/share/applications/cursor.desktop"
-      fi
+      ensureDesktopMime() {
+        local desktop="$1"
+        local mime="$2"
+
+        if grep -q '^MimeType=' "$desktop"; then
+          if ! grep '^MimeType=' "$desktop" | grep -Fq "$mime"; then
+            sed -i "/^MimeType=/ s|;*$|;$mime;|" "$desktop"
+          fi
+        elif grep -q '^Keywords=' "$desktop"; then
+          sed -i "/^Keywords=/a MimeType=$mime;" "$desktop"
+        else
+          sed -i "/^\[Desktop Entry\]/a MimeType=$mime;" "$desktop"
+        fi
+      }
+
+      ensureDesktopMime "$out/share/applications/cursor.desktop" \
+        "application/x-cursor-workspace"
+      ensureDesktopMime "$out/share/applications/cursor.desktop" \
+        "x-scheme-handler/cursor"
 
       if grep -q '^MimeType=' "$out/share/applications/cursor-url-handler.desktop"; then
         sed -i 's|^MimeType=.*|MimeType=x-scheme-handler/cursor;|' \
@@ -94,29 +106,6 @@ in
         sed -i '/^Keywords=/a MimeType=x-scheme-handler/cursor;' \
           "$out/share/applications/cursor-url-handler.desktop"
       fi
-
-      sed -i 's|^Exec=.*|Exec=cursor --open-url %U|' \
-        "$out/share/applications/cursor-url-handler.desktop"
-    '';
-
-    postFixup = (oldAttrs.postFixup or "") + ''
-      cursorWrapper="$out/bin/cursor"
-      cursorWrapperTmp="$cursorWrapper.tmp"
-
-      while IFS= read -r line; do
-        case "$line" in
-          "exec -a \"\$0\" \"$out/bin/.cursor-wrapped\""*)
-            printf '%s\n' 'if [ "''${1-}" = "--open-url" ]; then'
-            printf '  exec -a "%s/lib/cursor/cursor" "%s/lib/cursor/cursor" "$@"\n' "$out" "$out"
-            printf '%s\n' 'fi'
-            ;;
-        esac
-
-        printf '%s\n' "$line"
-      done < "$cursorWrapper" > "$cursorWrapperTmp"
-
-      mv "$cursorWrapperTmp" "$cursorWrapper"
-      chmod +x "$cursorWrapper"
     '';
 
     postInstall = (oldAttrs.postInstall or "") + ''

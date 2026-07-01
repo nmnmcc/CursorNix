@@ -48,14 +48,12 @@
           cursor-mime = pkgs.runCommand "cursor-mime-check" { } ''
             grep -Fq 'MimeType=application/x-cursor-workspace;' \
               ${cursor}/share/applications/cursor.desktop
+            grep '^MimeType=' ${cursor}/share/applications/cursor.desktop \
+              | grep -Fq 'x-scheme-handler/cursor'
             grep -Fq 'MimeType=x-scheme-handler/cursor;' \
               ${cursor}/share/applications/cursor-url-handler.desktop
             grep -Fq 'Exec=cursor --open-url %U' \
               ${cursor}/share/applications/cursor-url-handler.desktop
-            grep -Fq 'if [ "''${1-}" = "--open-url" ]; then' \
-              ${cursor}/bin/cursor
-            grep -Fq 'exec -a "${cursor}/lib/cursor/cursor" "${cursor}/lib/cursor/cursor" "$@"' \
-              ${cursor}/bin/cursor
             test ! -e ${cursor}/bin/cursor-url-handler
             test -f ${cursor}/share/mime/packages/cursor-workspace.xml
             touch $out
