@@ -96,8 +96,6 @@ in
 
       ensureDesktopMime "$out/share/applications/cursor.desktop" \
         "application/x-cursor-workspace"
-      ensureDesktopMime "$out/share/applications/cursor.desktop" \
-        "x-scheme-handler/cursor"
 
       if grep -q '^MimeType=' "$out/share/applications/cursor-url-handler.desktop"; then
         sed -i 's|^MimeType=.*|MimeType=x-scheme-handler/cursor;|' \
