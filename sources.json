@@ -2,15 +2,15 @@
   "agent": {
     "tarball": {
       "aarch64-linux": {
-        "hash": "sha256-+ukezc17DvTLI3gFik2YZEiDUtMypNIgjNh6YHi148k=",
-        "url": "https://downloads.cursor.com/lab/2026.07.08-0c04a8a/linux/arm64/agent-cli-package.tar.gz"
+        "hash": "sha256-6oKEd2Nz+vf37mp7lOe2AS9OiFcf3bt6gjoEnY21Jt0=",
+        "url": "https://downloads.cursor.com/lab/2026.07.09-c59fd9a/linux/arm64/agent-cli-package.tar.gz"
       },
       "x86_64-linux": {
-        "hash": "sha256-qVzpU8+ynYdgC3Fg/fe7vwkIlfON74FVIPMsSojxtZU=",
-        "url": "https://downloads.cursor.com/lab/2026.07.08-0c04a8a/linux/x64/agent-cli-package.tar.gz"
+        "hash": "sha256-QS6RJqAjA0Dni7lkx2VOSSn2dQ4vUZo9BuWBO71NuZg=",
+        "url": "https://downloads.cursor.com/lab/2026.07.09-c59fd9a/linux/x64/agent-cli-package.tar.gz"
       }
     },
-    "version": "2026.07.08-0c04a8a"
+    "version": "2026.07.09-c59fd9a"
   },
   "cursor": {
     "commitSha": "23b9fb205fe595ea2be29da7214e19762d037fc3",
