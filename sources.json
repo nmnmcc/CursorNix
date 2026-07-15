@@ -13,18 +13,18 @@
     "version": "2026.07.09-a3815c0"
   },
   "cursor": {
-    "commitSha": "bf249e6efb5b097f23d7e21d7283429f0760b74a",
+    "commitSha": "fc2563ec93d793fc275eef734405a4fdf8b47b26",
     "deb": {
       "aarch64-linux": {
-        "hash": "sha256-P/Uoig69DlXJZbA+Og6f5Qyvzm8qZloMWeN71lUPd9o=",
-        "url": "https://downloads.cursor.com/production/bf249e6efb5b097f23d7e21d7283429f0760b74a/linux/arm64/deb/arm64/deb/cursor_3.11.19_arm64.deb"
+        "hash": "sha256-WozSji8H/Y85S4cSIv0yHO+hpR7oFkcNx558imqHc90=",
+        "url": "https://downloads.cursor.com/production/fc2563ec93d793fc275eef734405a4fdf8b47b26/linux/arm64/deb/arm64/deb/cursor_3.11.25_arm64.deb"
       },
       "x86_64-linux": {
-        "hash": "sha256-2Kv9Lec+P68x25ketYCSFdBAQ1ZweZK8vEazzaKiB4I=",
-        "url": "https://downloads.cursor.com/production/bf249e6efb5b097f23d7e21d7283429f0760b74a/linux/x64/deb/amd64/deb/cursor_3.11.19_amd64.deb"
+        "hash": "sha256-9k3ZAN3E8GWDQQueZMc4HbxZgH5y+jNKxZPRb9Mh8QY=",
+        "url": "https://downloads.cursor.com/production/fc2563ec93d793fc275eef734405a4fdf8b47b26/linux/x64/deb/amd64/deb/cursor_3.11.25_amd64.deb"
       }
     },
-    "version": "3.11.19",
+    "version": "3.11.25",
     "vscodeVersion": "1.105.1"
   }
 }
