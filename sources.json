@@ -13,18 +13,18 @@
     "version": "2026.09.10-fd3934a"
   },
   "cursor": {
-    "commitSha": "6496ea8a068aebfcd21990e70ff522e9abf10c8c",
+    "commitSha": "d6f462cdd0a6a6d1cff570daf980e671d0a63ded",
     "deb": {
       "aarch64-linux": {
-        "hash": "sha256-+Nim8biFDPIWL4YR1G+G0xlmhyv89Tqu2l6gzt7vrJI=",
-        "url": "https://downloads.cursor.com/production/6496ea8a068aebfcd21990e70ff522e9abf10c8c/linux/arm64/deb/arm64/deb/cursor_3.19.19_arm64.deb"
+        "hash": "sha256-cCasqLi2srnme5k2d1Khxy+td0LsfGt7GU/Z0x65r/4=",
+        "url": "https://downloads.cursor.com/production/d6f462cdd0a6a6d1cff570daf980e671d0a63ded/linux/arm64/deb/arm64/deb/cursor_3.20.10_arm64.deb"
       },
       "x86_64-linux": {
-        "hash": "sha256-LmM/8+aHGqe994efkWk+IWOhG/9aDghUJrETn6uz3WI=",
-        "url": "https://downloads.cursor.com/production/6496ea8a068aebfcd21990e70ff522e9abf10c8c/linux/x64/deb/amd64/deb/cursor_3.19.19_amd64.deb"
+        "hash": "sha256-sqcP011jBucU6CstqNcl8Jvh/HO3IMQPhb/GPFpbIKo=",
+        "url": "https://downloads.cursor.com/production/d6f462cdd0a6a6d1cff570daf980e671d0a63ded/linux/x64/deb/amd64/deb/cursor_3.20.10_amd64.deb"
       }
     },
-    "version": "3.19.19",
+    "version": "3.20.10",
     "vscodeVersion": "1.105.1"
   }
 }
