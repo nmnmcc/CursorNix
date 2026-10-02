@@ -2,29 +2,29 @@
   "agent": {
     "tarball": {
       "aarch64-linux": {
-        "hash": "sha256-wx7wumuCf9+AU5Gd5Xq65Ke9ca/v3yyrBh4nb6rEKzo=",
-        "url": "https://downloads.cursor.com/lab/2026.10.01-14929f9/linux/arm64/agent-cli-package.tar.gz"
+        "hash": "sha256-eFxfa/KmDrESHiftjBT17gftG1tmkjJPLZqZcjgkXrU=",
+        "url": "https://downloads.cursor.com/lab/2026.10.01-e373342/linux/arm64/agent-cli-package.tar.gz"
       },
       "x86_64-linux": {
-        "hash": "sha256-upqFX4+BPJG58nBxJ1ctLcmuWmKBjhw2cZYl0PuL1FI=",
-        "url": "https://downloads.cursor.com/lab/2026.10.01-14929f9/linux/x64/agent-cli-package.tar.gz"
+        "hash": "sha256-p5cmxuZEUg6ZOXC+TEV3WmiJgCtnq+RhpnelMhmuKOg=",
+        "url": "https://downloads.cursor.com/lab/2026.10.01-e373342/linux/x64/agent-cli-package.tar.gz"
       }
     },
-    "version": "2026.10.01-14929f9"
+    "version": "2026.10.01-e373342"
   },
   "cursor": {
-    "commitSha": "3a92974361033b2051526321308c2740fe5912c5",
+    "commitSha": "2d29876d567da1607532b23bbf2cd5ddbca496fe",
     "deb": {
       "aarch64-linux": {
-        "hash": "sha256-tFBDY0JoBBoeSpBqOcXCMziwvFYWGwMQrTRELZu1P3M=",
-        "url": "https://downloads.cursor.com/production/3a92974361033b2051526321308c2740fe5912c5/linux/arm64/deb/arm64/deb/cursor_3.22.12_arm64.deb"
+        "hash": "sha256-Sqy51EzV6fLHBV/PJdst4u11HkDs9aYJL3zD5XOGoRc=",
+        "url": "https://downloads.cursor.com/production/2d29876d567da1607532b23bbf2cd5ddbca496fe/linux/arm64/deb/arm64/deb/cursor_3.23.12_arm64.deb"
       },
       "x86_64-linux": {
-        "hash": "sha256-i5GY993nn34nzIPavzxmqTylMDtpGXGRAMgvKdlJimU=",
-        "url": "https://downloads.cursor.com/production/3a92974361033b2051526321308c2740fe5912c5/linux/x64/deb/amd64/deb/cursor_3.22.12_amd64.deb"
+        "hash": "sha256-SzjSOSbHLyCA4roQhZPjjzaIMSRk1wrckIjbY6U8A0Y=",
+        "url": "https://downloads.cursor.com/production/2d29876d567da1607532b23bbf2cd5ddbca496fe/linux/x64/deb/amd64/deb/cursor_3.23.12_amd64.deb"
       }
     },
-    "version": "3.22.12",
+    "version": "3.23.12",
     "vscodeVersion": "1.105.1"
   }
 }
